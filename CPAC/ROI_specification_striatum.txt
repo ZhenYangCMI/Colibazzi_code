@@ -1,0 +1,1 @@
+/home/data/Projects/Colibazzi/results/rois_2mm.nii.gz

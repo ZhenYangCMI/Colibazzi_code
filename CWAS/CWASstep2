@@ -1,0 +1,11 @@
+connectir_mdmr.R \
+-i "/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_98sub" \
+--formula 'Group_text + Handedness_text + MeanFD_demean + Gender_text + Age_demean' \
+--model "/home/data/Projects/Colibazzi/data/regressionModel.csv" \
+--permutations 15000 \
+--factors2perm 'Group_text' \
+--threads 8 \
+--memlimit 20 \
+--save-perms \
+mdmr3mmFWHM8Model2
+

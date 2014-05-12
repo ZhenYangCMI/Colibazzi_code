@@ -1,0 +1,25 @@
+# can not have space before or after the = sign
+# CWAS easythresh: fullModel sepModel
+
+standardBrain='/home/data/Projects/hematocrit/mask/MNI152_T1_3mm_brain.nii.gz'
+mask=/home/data/Projects/Colibazzi/masks/stdMask_50patients_compCor_100prct.nii.gz
+		
+		dataDir=/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_50patients/symptom
+		
+
+		for effect in SIPSTOTA_demean SIPSTOTB_demean; do
+
+			cd ${dataDir}
+
+			outputFile=${effect}
+
+			3dcalc -a ${dataDir}/zstats_${effect}.nii.gz \
+			-expr 'a' -prefix "${dataDir}/cp_zstats_${effect}.nii"
+
+			cmd="easythresh cp_zstats_${effect}.nii ${mask} 1.64 0.05 ${standardBrain} ${outputFile}"
+
+			echo $cmd
+			eval $cmd
+
+			rm ${dataDir}/cp_zstats_${effect}.nii
+		done

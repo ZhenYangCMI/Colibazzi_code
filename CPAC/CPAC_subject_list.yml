@@ -1,0 +1,24 @@
+-
+    subject_id: '5877'
+    unique_id: ''
+    anat: '/home/data/Projects/Colibazzi/data/columbia/5877/T1Img/T1Img.nii.gz'
+    rest: 
+      FunImg_rawFun: '/home/data/Projects/Colibazzi/data/columbia/5877/FunImg/rawFun.nii.gz'
+    scan_parameters:
+        tr: '2.2'
+        acquisition: 'alt+z'
+        reference: '33'
+        first_tr: '0'
+        last_tr: 'None'
+-
+    subject_id: '3924'
+    unique_id: ''
+    anat: '/home/data/Projects/Colibazzi/data/columbia/3924/T1Img/T1Img.nii.gz'
+    rest: 
+      FunImg_rawFun: '/home/data/Projects/Colibazzi/data/columbia/3924/FunImg/rawFun.nii.gz'
+    scan_parameters:
+        tr: '2.2'
+        acquisition: 'alt+z'
+        reference: '33'
+        first_tr: '0'
+        last_tr: 'None'

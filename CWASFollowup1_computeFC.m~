@@ -1,0 +1,23 @@
+clear
+clc
+
+
+dataDir=['/home/data/Projects/BIRD/results/CPAC_zy1_24_14_reorganized/compCor/FunImg_3mm_fwhm6/'];
+subListFile='/home/data/Projects/BIRD/data/final115sub.txt';
+subList1=fopen(subListFile);
+subList=textscan(subList1, '%s', 'delimiter', '\n')
+subList=cell2mat(subList{1})
+numSub=length(subList)
+effect='age_demeanByDT_group' % can be "DT_group_name" or "age_demeanByDT_group"
+MaskData='/home/data/Projects/BIRD/mask/stdMask_115sub_compCor_100prct.nii'
+mkdir (['/home/data/Projects/BIRD/results/CPAC_zy1_24_14_reorganized/compCor/CWAS/followUp/', effect])
+outputDir= ['/home/data/Projects/BIRD/results/CPAC_zy1_24_14_reorganized/compCor/CWAS/followUp/', effect, '/'];
+for i=1:numSub
+    sub=subList(i, 1:9);
+    AllVolume=[dataDir, 'normFunImg_', sub, '_3mm_fwhm6_masked.nii'];
+    
+    ROIDef={['/home/data/Projects/BIRD/results/CPAC_zy1_24_14_reorganized/compCor/CWAS/mdmr3mmFWHM6/cluster_mask_', effect, '.nii']}
+    OutputName=[outputDir, 'FC_ROI_', effect, '_', sub];
+    IsMultipleLabel=1;
+    [FCBrain, Header] = y_SCA(AllVolume, ROIDef, OutputName, MaskData, IsMultipleLabel);
+end

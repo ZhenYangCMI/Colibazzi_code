@@ -1,0 +1,13 @@
+
+subject_list=/home/data/Projects/Colibazzi/data/subjectlist_addedLater.txt
+
+for sub in `cat $subject_list`; do
+
+			echo --------------------------
+			echo running subject ${sub}
+			echo --------------------------
+
+mkdir -p /home/data/Projects/Colibazzi/FunImg/${sub}
+dcm2nii -d n -n Y -g Y -f n -o /home/data/Projects/Colibazzi/FunImg/${sub} /home/data/Originals/Colibazzi/FunRaw/${sub}
+done
+

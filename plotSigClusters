@@ -1,0 +1,9 @@
+
+measure=SCATHAL1
+sign=neg
+maskDir=/home/data/Projects/Colibazzi/masks/ROImasksForDimensionalAnalysis;
+threshResults=/home/data/Projects/Colibazzi/figs/figs98subModel2/thresh_${measure}_T1_Z_cmb.nii.gz
+
+for clust in 1; do
+3dcalc -a ${maskDir}/cluster_mask_${measure}_T1_Z_${sign}.nii -b ${threshResults} -expr "b*equals(a,${clust})" -prefix /home/data/Projects/Colibazzi/masks/sigROImask/${measure}_${sign}_ROI${clust}.nii.gz
+done

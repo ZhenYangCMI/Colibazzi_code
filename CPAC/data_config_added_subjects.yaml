@@ -1,0 +1,14 @@
+anatomicalTemplate  :  /home/data/Projects/Colibazzi/data/%s/%s/T1Img/T1Img.nii.gz 
+
+functionalTemplate  :  /home/data/Projects/Colibazzi/data/%s/%s/FunImg/rawFun.nii.gz 
+
+subjectList  :  /home/data/Projects/Colibazzi/data/subjectlist_addedLater.txt 
+
+exclusionSubjectList  :  None 
+
+siteList  :  None 
+
+scanParametersCSV  :  /home/data/Projects/Colibazzi/code/CPAC/scan_parameters.csv 
+
+outputSubjectListLocation  :  /home/data/Projects/Colibazzi/code/CPAC 
+

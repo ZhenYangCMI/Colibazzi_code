@@ -1,0 +1,60 @@
+-
+    subject_id: '5791'
+    unique_id: ''
+    anat: '/home/data/Projects/Colibazzi/data/columbia/5791/T1Img/T1Img.nii.gz'
+    rest: 
+      FunImg_rawFun: '/home/data/Projects/Colibazzi/data/columbia/5791/FunImg/rawFun.nii.gz'
+    scan_parameters:
+        tr: '2.2'
+        acquisition: 'alt+z'
+        reference: '33'
+        first_tr: '0'
+        last_tr: 'None'
+-
+    subject_id: '4578'
+    unique_id: ''
+    anat: '/home/data/Projects/Colibazzi/data/columbia/4578/T1Img/T1Img.nii.gz'
+    rest: 
+      FunImg_rawFun: '/home/data/Projects/Colibazzi/data/columbia/4578/FunImg/rawFun.nii.gz'
+    scan_parameters:
+        tr: '2.2'
+        acquisition: 'alt+z'
+        reference: '33'
+        first_tr: '0'
+        last_tr: 'None'
+-
+    subject_id: '3279'
+    unique_id: ''
+    anat: '/home/data/Projects/Colibazzi/data/columbia/3279/T1Img/T1Img.nii.gz'
+    rest: 
+      FunImg_rawFun: '/home/data/Projects/Colibazzi/data/columbia/3279/FunImg/rawFun.nii.gz'
+    scan_parameters:
+        tr: '2.2'
+        acquisition: 'alt+z'
+        reference: '33'
+        first_tr: '0'
+        last_tr: 'None'
+-
+    subject_id: '3476'
+    unique_id: ''
+    anat: '/home/data/Projects/Colibazzi/data/columbia/3476/T1Img/T1Img.nii.gz'
+    rest: 
+      FunImg_rawFun: '/home/data/Projects/Colibazzi/data/columbia/3476/FunImg/rawFun.nii.gz'
+    scan_parameters:
+        tr: '2.2'
+        acquisition: 'alt+z'
+        reference: '33'
+        first_tr: '0'
+        last_tr: 'None'
+-
+    subject_id: '4490'
+    unique_id: ''
+    anat: '/home/data/Projects/Colibazzi/data/columbia/4490/T1Img/T1Img.nii.gz'
+    rest: 
+      FunImg_rawFun: '/home/data/Projects/Colibazzi/data/columbia/4490/FunImg/rawFun.nii.gz'
+    scan_parameters:
+        tr: '2.2'
+        acquisition: 'alt+z'
+        reference: '33'
+        first_tr: '0'
+        last_tr: 'None'

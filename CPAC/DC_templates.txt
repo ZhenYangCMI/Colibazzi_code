@@ -1,0 +1,1 @@
+/home/data/Projects/Colibazzi/masks/meanStandFunMask_99sub_90prct.nii.gz

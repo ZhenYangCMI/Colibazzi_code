@@ -1,0 +1,55 @@
+preprocessDate='3_10_14'
+project='Colibazzi'
+covType=noGSR
+
+# full/path/to/site/subject_list
+subject_list="/home/data/Projects/${project}/data/subClean_step2_98sub.txt"
+
+
+### copy over the SCA results, raw correlations have not been generated for all seeds, so the Z to standard space and smoothed results were used
+
+for sub in `cat $subject_list`; do
+
+	echo --------------------------
+	echo running subject ${sub}
+	echo ---------------------
+	#for seed in `seq 1 1 3`; do
+	for measure in DegreeCentrality VMHC; do
+	echo running ROI ${measure}
+if [[ ${measure} = "DegreeCentrality" ]]; then
+	3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/noGSR/${measure}/${measure}_${sub}_MNI_fwhm8.nii.gz -expr 'a' -prefix /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/noGSR/${measure}/${measure}_${sub}_MNI_fwhm8.nii
+else
+3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/noGSR/${measure}/Snorm${measure}_${sub}.nii.gz -expr 'a' -prefix /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/noGSR/${measure}/Snorm${measure}_${sub}.nii
+fi
+	done
+done
+
+for measure in ReHo fALFF VMHC DegreeCentrality DualRegression0 DualRegression1 DualRegression2 DualRegression3 DualRegression4 DualRegression5 DualRegression6 DualRegression7 DualRegression8 DualRegression9 SCA1 SCA2 SCA3 SCA4 SCA5 SCA6 SCA7 SCA8 SCA9 SCA10 SCA11 SCA12 SCAlGpi SCArGpi SCAVTA SCATHAL1 SCATHAL2 SCATHAL3 SCATHAL4 SCATHAL5 SCATHAL6 SCATHAL7 CWASROI1 CWASROI2; do
+3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/meanRegress/${measure}/${measure}_AllVolume_meanRegress.nii[0..50] -expr 'a' -prefix /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/meanRegress/${measure}/${measure}_AllVolume_meanRegress_51patients.nii
+done
+
+
+
+for measure in ReHo fALFF VMHC DegreeCentrality DualRegression0 DualRegression1 DualRegression2 DualRegression3 DualRegression4 DualRegression5 DualRegression6 DualRegression7 DualRegression8 DualRegression9 SCA1 SCA2 SCA3 SCA4 SCA5 SCA6 SCA7 SCA8 SCA9 SCA10 SCA11 SCA12 SCAlGpi SCArGpi SCAVTA SCATHAL1 SCATHAL2 SCATHAL3 SCATHAL4 SCATHAL5 SCATHAL6 SCATHAL7; do
+3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/groupAnalysis98subModel2/${measure}/easythresh/cluster_mask_${measure}_T1_Z_neg.nii.gz -expr 'a' -prefix /home/data/Projects/Colibazzi/masks/ROImasksForDimensionalAnalysis/cluster_mask_${measure}_T1_Z_neg.nii.gz
+3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/groupAnalysis98subModel2/${measure}/easythresh/cluster_mask_${measure}_T1_Z_pos.nii.gz -expr 'a' -prefix /home/data/Projects/Colibazzi/masks/ROImasksForDimensionalAnalysis/cluster_mask_${measure}_T1_Z_pos.nii.gz
+done
+
+for measure in ROI1 ROI2; do
+3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_98sub/mdmr3mmFWHM8Model2followUp/regressionAnalysis/${measure}/easythresh/cluster_mask_${measure}_T1_Z_pos.nii.gz -expr 'a' -prefix /home/data/Projects/Colibazzi/masks/ROImasksForDimensionalAnalysis/cluster_mask_CWAS${measure}_T1_Z_pos.nii
+
+3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_98sub/mdmr3mmFWHM8Model2followUp/regressionAnalysis/${measure}/easythresh/cluster_mask_${measure}_T1_Z_neg.nii.gz -expr 'a' -prefix /home/data/Projects/Colibazzi/masks/ROImasksForDimensionalAnalysis/cluster_mask_CWAS${measure}_T1_Z_neg.nii
+done
+
+measure=CWASROI1
+3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_98sub/mdmr3mmFWHM8Model2followUp/regressionAnalysis/ROI1_AllVolume_meanRegress.nii[0..50] -expr 'a' -prefix /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/meanRegress/${measure}/${measure}_AllVolume_meanRegress_51patients.nii
+
+for measure in ReHo fALFF VMHC DegreeCentrality DualRegression0 DualRegression1 DualRegression2 DualRegression3 DualRegression4 DualRegression5 DualRegression6 DualRegression7 DualRegression8 DualRegression9 SCA1 SCA2 SCA3 SCA4 SCA5 SCA6 SCA7 SCA8 SCA9 SCA10 SCA11 SCA12 SCAlGpi SCArGpi SCAVTA SCATHAL1 SCATHAL2 SCATHAL3 SCATHAL4 SCATHAL5 SCATHAL6 SCATHAL7 CWASROI1 CWASROI2; do
+
+	for model in modelSymptom_T1 modelSymptom_T2 modelOutcomeRole_T1 modelOutcomeSocial_T1; do
+	3dcalc -a /home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/wholeBrainDimAnalysis/${measure}/easythresh/thresh_${measure}_${model}_Z_cmb.nii -expr 'a' -prefix /home/data/Projects/Colibazzi/figs/figs98subModel2wholeBrainDimAnalysis/thresh_${measure}_${model}_Z_cmb.nii.gz
+	done
+done
+
+
+

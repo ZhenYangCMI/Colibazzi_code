@@ -1,0 +1,11 @@
+connectir_mdmr.R \
+-i "/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_50patients" \
+--formula 'SIPSTOTA_demean + SIPSTOTB_demean + Handedness_label + MeanFD_demean + Gender_label + Age_demean' \
+--model "/home/data/Projects/Colibazzi/data/regression50patients.csv" \
+--permutations 15000 \
+--factors2perm 'SIPSTOTA_demean,SIPSTOTB_demean' \
+--threads 8 \
+--memlimit 20 \
+--save-perms \
+symptom
+

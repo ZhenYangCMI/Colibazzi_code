@@ -1,0 +1,2 @@
+/home/data/Projects/Colibazzi/masks/SCAMaskFinal/Thalamus-maxprob-thr50-2mm.nii.gz
+/home/data/Projects/Colibazzi/results/rois_2mm.nii.gz

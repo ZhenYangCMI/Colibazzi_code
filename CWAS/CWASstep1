@@ -1,0 +1,10 @@
+connectir_subdist.R \
+--infuncs1='/home/data/Projects/Colibazzi/data/subFunImgFilePath_98sub.txt' \
+--ztransform \
+--brainmask1='/home/data/Projects/Colibazzi/masks/stdMask_98sub_compCor_100prct.nii.gz' \
+--bg=/home2/data/Projects/workingMemory/mask/MNI152_T1_GREY_3mm_25pc_mask.nii.gz \
+--memlimit=20 \
+--forks=1 \
+--threads=16 \
+--method=pearson \
+/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_98sub
