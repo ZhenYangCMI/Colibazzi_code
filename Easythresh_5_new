@@ -1,0 +1,56 @@
+# can not have space before or after the = sign
+#remember to modify the effect list depending on the model
+
+
+type=CWASFollowup  #otherMetrics CWASFollowup
+
+#DC and VMHC, p =0.05 was used (note: VMHC only corrected for half brain so the mask is different). for SCATHAL*, p =0.05/7= 0.0071; No clusters are sifnificant for SCACaudate even at 0.05 so this seed was not included in the final analysis; for SCATHALCommon, z=2.33, p=0.05
+# SCA_DCROI: p=0.05, z=1.96 (one-tailed p=0.025) 
+#for metric in VMHC DegreeCentrality SCACaudateL SCACaudateR; do
+#for metric in SCATHAL1 SCATHAL2 SCATHAL3 SCATHAL4 SCATHAL5 SCATHAL6 SCATHAL7; do
+for metric in SCA_ThalROI_BasedOnMDMRoverlapNet6ClusterCMiFC; do
+
+# MDMR followup, when the easythresh cluster_mask is used as seed ROI, p= 0.05/3=0.0167 ; when ROIs overlapped with Yeo network is used p =0.05/6=0.0083 
+# for metric in Group_text_ROI1 Group_text_ROI2 Group_text_ROI3 Group_text_ROI4 Group_text_ROI5 Group_text_ROI6; do
+
+		resultDir=/home/data/Projects/Zhen/Colibazzi/results/CPAC_zy2_22_14_reorganized/groupAnalysis98sub/${metric}
+	    mkdir -p ${resultDir}/easythresh
+	
+		#if [[ ${type} = "otherMetrics" ]]; then
+            #standBrain=/usr/share/data/fsl-mni152-templates/MNI152_T1_2mm_brain.nii.gz
+		    #mask=/home/data/Projects/Zhen/Colibazzi/masks/meanStandFunMask_98sub_90prct.nii.gz
+            #mask=/home/data/Projects/Zhen/Colibazzi/masks/VMHC_98sub_mask_90prct_L.nii
+		#else 
+			mask=/home/data/Projects/Zhen/Colibazzi/masks/final/stdMask_98sub_3mm_noGSR_100prct.nii.gz
+            standBrain=/usr/share/data/fsl-mni152-templates/MNI152_T1_3mm_brain.nii.gz
+		#fi
+
+		effect='T1'
+		3dcalc -a ${resultDir}/${metric}_${effect}_Z.nii \
+		-expr 'a' -prefix "${resultDir}/easythresh/${metric}_${effect}_Z_pos.nii"
+
+		3dcalc -a ${resultDir}/${metric}_${effect}_Z.nii \
+		-expr '(-1)*a' -prefix "${resultDir}/easythresh/${metric}_${effect}_Z_neg.nii"
+
+		cd ${resultDir}/easythresh
+
+		for sign in pos neg; do
+			outputFile=${metric}_${effect}_Z_${sign}
+
+			cmd1="easythresh \
+			${metric}_${effect}_Z_${sign}.nii \
+			${mask} \
+			1.96 0.05 \
+			${standBrain} \
+			${outputFile}"
+
+			echo $cmd1
+			eval $cmd1
+		
+		done
+
+		3dcalc -a "thresh_${metric}_${effect}_Z_pos.nii.gz" -b "thresh_${metric}_${effect}_Z_neg.nii.gz" -expr 'a+b*(-1)' -prefix "thresh_${metric}_${effect}_Z_cmb.nii"
+
+		
+done
+

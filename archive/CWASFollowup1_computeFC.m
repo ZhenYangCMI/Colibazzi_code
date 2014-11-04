@@ -18,8 +18,8 @@ subList=load(['/home/data/Projects/Zhen/', project, '/data/subClean_step2_98sub.
 numSub=length(subList)
 effect='Group_text' 
 MaskData=['/home/data/Projects/Zhen/Colibazzi/masks/CWAS/stdMask_', num2str(numSub), 'sub_3mm_noGSR_100prct.nii'];
-mkdir (['/home/data/Projects/Zhen/', project, '/results/CPAC_zy', preprocessingDate, '_reorganized/noGSR/CWAS_98sub/mdmr3mmFWHM8Model2followUp'])
-outputDir=['/home/data/Projects/', project, '/results/CPAC_zy', preprocessingDate, '_reorganized/compCor/CWAS_98sub/mdmr3mmFWHM8Model2followUp/'];
+mkdir (['/home/data/Projects/Zhen/', project, '/results/CPAC_zy', preprocessingDate, '_reorganized/noGSR/CWAS_98sub/mdmr3mmFWHM8followUp'])
+outputDir=['/home/data/Projects/Zhen/', project, '/results/CPAC_zy', preprocessingDate, '_reorganized/noGSR/CWAS_98sub/mdmr3mmFWHM8followUp/'];
 for i=1:numSub
  sub=num2str(subList(i)) 
  

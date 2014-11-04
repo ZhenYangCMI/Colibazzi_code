@@ -1,0 +1,7 @@
+
+maskName=outcome_SOCIAL
+mask=/home/data/Projects/Zhen/Colibazzi/figs/finalAnalysis/cluster_mask_${maskName}_Yeo.nii
+3dFWHMx -input ${mask} -out /home/data/Projects/Zhen/Colibazzi/figs/finalAnalysis/FWHM_${maskName}
+
+3dClustSim -nxyz 61 73 61 -dxyz 3 3 3 -fwhmxyz 5.27606 5.38522 4.90195 -quiet -niter 10000 -prefix /home/data/Projects/Zhen/Colibazzi/figs/finalAnalysis/clustThresh_${maskName}
+

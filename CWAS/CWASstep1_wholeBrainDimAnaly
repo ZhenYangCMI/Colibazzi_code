@@ -1,10 +1,10 @@
 connectir_subdist.R \
---infuncs1='/home/data/Projects/Colibazzi/data/subFunImgFilePath_39patients.txt' \
+--infuncs1='/home/data/Projects/Zhen/Colibazzi/data/CWASFunImgFilePath_40sub.txt' \
 --ztransform \
---brainmask1='/home/data/Projects/Colibazzi/masks/stdMask_39patients_compCor_100prct.nii.gz' \
---bg=/home2/data/Projects/workingMemory/mask/MNI152_T1_GREY_3mm_25pc_mask.nii.gz \
+--brainmask1='/home/data/Projects/Zhen/Colibazzi/masks/CWAS/stdMask_40sub_3mm_noGSR_100prct.nii.gz' \
+--bg=/home2/data/Projects/Zhen/workingMemory/mask/MNI152_T1_GREY_3mm_25pc_mask.nii.gz \
 --memlimit=20 \
 --forks=1 \
 --threads=16 \
 --method=pearson \
-/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_39patients_new
+/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/noGSR/CWAS_40patients

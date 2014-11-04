@@ -14,8 +14,8 @@
         {
             "group": 1, 
             "name": "0_write_log", 
-            "report": "/tmp/tmpJ0k1L8/log_done_scan_anat/write_log/_report/report.rst", 
-            "result": "/tmp/tmpJ0k1L8/log_done_scan_anat/write_log/result_write_log.pklz"
+            "report": "/tmp/tmp3mXJuP/log_done_scan_anat/write_log/_report/report.rst", 
+            "result": "/tmp/tmp3mXJuP/log_done_scan_anat/write_log/result_write_log.pklz"
         }
     ]
 }

@@ -1,7 +1,7 @@
 connectir_mdmr.R \
--i "/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_39patients" \
+-i "/home/data/Projects/Zhen/Colibazzi/results/CPAC_zy2_22_14_reorganized/noGSR/CWAS_40patients" \
 --formula 'outcomeSOCIAL_label + Handedness_label + MeanFD_demean + Gender_label + Age_demean' \
---model "/home/data/Projects/Colibazzi/data/regression39patients.csv" \
+--model "/home/data/Projects/Zhen/Colibazzi/data/regression40patients.csv" \
 --permutations 15000 \
 --factors2perm 'outcomeSOCIAL_label' \
 --threads 8 \

@@ -1,10 +1,10 @@
 # can not have space before or after the = sign
-# CWAS easythresh: fullModel sepModel
 
-standardBrain='/home/data/Projects/hematocrit/mask/MNI152_T1_3mm_brain.nii.gz'
-mask=/home/data/Projects/Colibazzi/masks/stdMask_98sub_compCor_100prct.nii.gz
+numSub=98
+standardBrain='/home/data/Projects/Zhen/commonCode/MNI152_T1_3mm_brain.nii.gz'
+mask=/home/data/Projects/Zhen/Colibazzi/masks/CWAS/stdMask_${numSub}sub_3mm_noGSR_100prct.nii.gz
 		
-		dataDir=/home/data/Projects/Colibazzi/results/CPAC_zy2_22_14_reorganized/compCor/CWAS_98sub/mdmr3mmFWHM8Model2
+		dataDir=/home/data/Projects/Zhen/Colibazzi/results/CPAC_zy2_22_14_reorganized/noGSR/CWAS_98sub/mdmr3mmFWHM8
 		
 
 		for effect in Group_text; do

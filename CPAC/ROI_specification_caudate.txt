@@ -1,0 +1,3 @@
+/home/data/Projects/Zhen/Colibazzi/masks/SCAMaskFinal/Caudate_L_2mm_short.nii.gz
+/home/data/Projects/Zhen/Colibazzi/masks/SCAMaskFinal/Caudate_R_2mm_short.nii.gz
+/home/data/Projects/Zhen/Colibazzi/masks/SCAMaskFinal/Thalamus-maxprob-thr50-2mm.nii.gz

@@ -1,0 +1,47 @@
+# can not have space before or after the = sign
+#For SymptomA and outcomeSocial, each results are corrected for p, 0.05/7=0.0071
+project=Colibazzi
+
+
+#for symptomA related results: p =0.05/7= 0.0071; for social outcome related results: p =0.05/7= 0.0071
+
+
+#for metric in SIPSTOTA_demean_ROI1 SIPSTOTA_demean_ROI2 SIPSTOTA_demean_ROI3 SIPSTOTA_demean_ROI4 SIPSTOTA_demean_ROI5 SIPSTOTA_demean_ROI6 SIPSTOTA_demean_ROI7; do
+    #mask=/home/data/Projects/Zhen/Colibazzi/masks/CWAS/stdMask_51sub_3mm_noGSR_100prct.nii.gz;
+    #standBrain=/usr/share/data/fsl-mni152-templates/MNI152_T1_3mm_brain.nii.gz
+#for metric in outcome_SOCIAL_ROI1 outcome_SOCIAL_ROI2 outcome_SOCIAL_ROI3 outcome_SOCIAL_ROI4 outcome_SOCIAL_ROI5 outcome_SOCIAL_ROI6 outcome_SOCIAL_ROI7; do
+    #mask=/home/data/Projects/Zhen/Colibazzi/masks/CWAS/stdMask_40sub_3mm_noGSR_100prct.nii.gz;
+    #standBrain=/usr/share/data/fsl-mni152-templates/MNI152_T1_3mm_brain.nii.gz
+
+	
+    resultDir="/home/data/Projects/Zhen/Colibazzi/results/CPAC_zy2_22_14_reorganized/wholeBrainDimAnalysis/${metric}"
+	mkdir -p ${resultDir}/easythresh
+	
+	effect='T1'		
+	
+	3dcalc -a ${resultDir}/${metric}_${effect}_Z.nii \
+	-expr 'a' -prefix "${resultDir}/easythresh/${metric}_${effect}_Z_pos.nii"
+
+	3dcalc -a ${resultDir}/${metric}_${effect}_Z.nii \
+	-expr '(-1)*a' -prefix "${resultDir}/easythresh/${metric}_${effect}_Z_neg.nii"
+
+	cd ${resultDir}/easythresh
+
+	for sign in pos neg; do
+	outputFile=${metric}_${effect}_Z_${sign}
+
+	cmd1="easythresh \
+	${metric}_${effect}_Z_${sign}.nii \
+	${mask} \
+	2.33 0.05 \
+	${standBrain} \
+	${outputFile}"
+
+	echo $cmd1
+	eval $cmd1
+	
+	done
+
+	3dcalc -a "thresh_${metric}_${effect}_Z_pos.nii.gz" -b "thresh_${metric}_${effect}_Z_neg.nii.gz" -expr 'a+b*(-1)' -prefix "thresh_${metric}_${effect}_Z_cmb.nii"
+
+done

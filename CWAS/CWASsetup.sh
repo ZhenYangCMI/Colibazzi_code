@@ -3,7 +3,7 @@
 smooth=8
 preprocessDate=2_22_14
 subList="/home/data/Projects/Colibazzi/data/subClean_step2.txt" 
-baseDir="/home/data/Projects/Colibazzi/results/CPAC_zy${preprocessDate}_reorganized/compCor"
+baseDir="/home/data/Projects/Colibazzi/results/CPAC_zy${preprocessDate}_reorganized/noGSR"
 
 ## 1. resample and smooth the functional data 
 mkdir ${baseDir}/FunImg_3mm_fwhm${smooth}

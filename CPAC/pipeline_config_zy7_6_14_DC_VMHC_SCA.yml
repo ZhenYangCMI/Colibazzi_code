@@ -29,28 +29,28 @@ numCoresPerSubject :  1
 
 
 # This number depends on computing resources.
-numSubjectsAtOnce :  8
+numSubjectsAtOnce :  20
 
 
 # Name for this pipeline configuration - useful for identification.
-pipelineName :  zy3_10_14
+pipelineName :  zy7_6_14_DC_VMHC_SCA
 
 
 # Directory where CPAC should store temporary and intermediate files.
-workingDirectory :  /home/data/Projects/Colibazzi/results/working
+workingDirectory :  /home/data/Projects/Zhen/Colibazzi/results/working
 
 
 # Directory where CPAC should write crash logs.
-crashLogDirectory :  /home/data/Projects/Colibazzi/results/crash
+crashLogDirectory :  /home/data/Projects/Zhen/Colibazzi/results/crash
 
 
 # Directory where CPAC should place processed data.
-outputDirectory :  /home/data/Projects/Colibazzi/results/output
+outputDirectory :  /home/data/Projects/Zhen/Colibazzi/results/output
 
 
 # Create a user-friendly, well organized version of the output directory.
 # We recommend all users enable this option.
-runSymbolicLinks :  [0]
+runSymbolicLinks :  [1]
 
 
 # Generate quality control pages containing preprocessing and derivative outputs.
@@ -85,6 +85,14 @@ runAnatomicalPreprocessing :  [1]
 # Runs the functional preprocessing workflow.
 # Must be enabled to run any subsequent processing or analysis workflows.
 runFunctionalPreprocessing :  [1]
+
+
+# Choose which tool to be used in functional masking - AFNI 3dAutoMask or FSL BET.
+functionalMasking :  ['BET']
+
+
+# Decides format of outputs. Off will produce non-z-scored outputs, On will produce z-scores of outputs, and On/Off will produce both.
+runZScoring :  [0]
 
 
 # Register anatomical images to a template.
@@ -178,10 +186,6 @@ runRegisterFuncToAnat :  [1]
 runBBReg :  [0]
 
 
-# Run Functional to Anatomical Registration with BB Register
-runBBReg :  [0]
-
-
 # The resolution (in mm) to which functional images are transformed during registration
 standardResolution :  2mm
 
@@ -231,15 +235,6 @@ Corrections :
   -  compcor :  0
      wm :  1
      csf :  1
-     global :  0
-     pc1 :  0
-     motion :  1
-     linear :  1
-     quadratic :  1
-     gm :  0
-  -  compcor :  1
-     wm :  0
-     csf :  0
      global :  0
      pc1 :  0
      motion :  1
@@ -305,11 +300,11 @@ numRemoveSubsequentFrames :  2
 # 2 -4 48 24 3 2mm
 # If multiple seeds are specified with the same resolution, they will be grouped into a single file containing multiple seeds, with the values within each seed ROI set to the seed label number.
 # Note that CPAC does not check for overlapping seeds. In the event that a voxel is present in multiple seeds defined here, the value of that voxel will be set to the sum of the two seed label numbers (effectively resulting in a new seed). Users should confirm the seeds they define do not overlap before running CPAC.
-seedSpecificationFile :  /home/data/Projects/Colibazzi/code/CPAC/seedFile_VTA_GPi.txt
+seedSpecificationFile :  None
 
 
 # Directory where CPAC should write NIfTI files containing new seeds.
-seedOutputLocation :  /home/data/Projects/Colibazzi/results
+seedOutputLocation :  None
 
 
 # It is possible to use the newly generated seeds when running a number of the analyses included in CPAC. Note that these analyses will be run using all new seeds.
@@ -325,17 +320,17 @@ runROITimeseries :  [1]
 # Full path to a text file containing a list ROI files.
 # Each line in this file should be the path to a NIfTI file containing one or more ROIs.
 # If you only wish to extract time series for newly defined spherical seed ROIs, set this field to None.
-roiSpecificationFile :  /home/data/Projects/Colibazzi/code/CPAC/ROI_specification_NT.txt
+roiSpecificationFile :  /home/data/Projects/Zhen/Colibazzi/Colibazzi_code/CPAC/ROI_specification_caudate.txt
 
 
 # Full path to a text file containing a list ROI files.
 # Each line in this file should be the path to a NIfTI file containing one or more ROIs.
 # If you only wish to extract time series for newly defined spherical seed ROIs, set this field to None.
-roiSpecificationFileForSCA :  /home/data/Projects/Colibazzi/code/CPAC/ROI_specification_NT.txt
+roiSpecificationFileForSCA :  /home/data/Projects/Zhen/Colibazzi/Colibazzi_code/CPAC/ROI_specification_caudate.txt
 
 
 # By default, extracted time series are written as both a text file and a 1D file. Additional output formats are as a .csv spreadsheet or a Numpy array.
-roiTSOutputs :  [False, False]
+roiTSOutputs :  [True, False]
 
 
 # Extract the time series of all voxels within one or more ROIs/seeds.
@@ -366,7 +361,7 @@ runSurfaceRegistraion :  [0]
 
 # Directory where FreeSurfer outputs surface data.
 # This should be the same as SUBJECTS_DIR in .bashrc
-reconSubjectsDirectory :  /home/data/Projects/Colibazzi/code/CPAC
+reconSubjectsDirectory :  /home/data/Projects/workingMemory/code/C-PAC-newConfig
 
 
 # Extract timeseries data for surface vertices.CPAC currently doesn't
@@ -387,7 +382,7 @@ runSpatialRegression :  [0]
 
 # Full path to a text file containing a list spatial maps.
 # Each line in this file should be the path to a 4D NIfTI file containing one spatial map per volume.
-spatialPatternMaps :  
+spatialPatternMaps :  /home/data/Projects/Zhen/Colibazzi/Colibazzi_code/CPAC/DR_spatialMaps.txt
 
 
 # Demean spatial maps before running spatial regression.
@@ -421,22 +416,22 @@ drNorm :  True
 
 
 # Calculate Voxel-mirrored Homotopic Connectivity (VMHC) for all voxels.
-runVMHC :  [0]
+runVMHC :  [1]
 
 
 # Included as part of the 'Image Resource Files' package available on the Install page of the User Guide.
 # It is not necessary to change this path unless you intend to use a non-standard symmetric template.
-brainSymmetric :  $FSLDIR/data/standard/MNI152_T1_${standardResolution}_brain_symmetric.nii.gz
+brainSymmetric :  /usr/share/data/fsl-mni152-templates/MNI152_T1_2mm_brain_symmetric.nii.gz
 
 
 # Included as part of the 'Image Resource Files' package available on the Install page of the User Guide.
 # It is not necessary to change this path unless you intend to use a non-standard symmetric template.
-symmStandard :  $FSLDIR/data/standard/MNI152_T1_${standardResolution}_symmetric.nii.gz
+symmStandard :  /usr/share/data/fsl-mni152-templates/MNI152_T1_2mm_symmetric.nii.gz
 
 
 # Included as part of the 'Image Resource Files' package available on the Install page of the User Guide.
 # It is not necessary to change this path unless you intend to use a non-standard symmetric template.
-twommBrainMaskDiluted :  $FSLDIR/data/standard/MNI152_T1_${standardResolution}_brain_mask_symmetric_dil.nii.gz
+twommBrainMaskDiluted :  /usr/share/data/fsl-mni152-templates/MNI152_T1_2mm_brain_mask_symmetric_dil.nii.gz
 
 
 # Included as part of the 'Image Resource Files' package available on the Install page of the User Guide.
@@ -445,7 +440,7 @@ configFileTwomm :  $FSLDIR/etc/flirtsch/T1_2_MNI152_${standardResolution}.cnf
 
 
 # Calculate Amplitude of Low Frequency Fluctuations (ALFF) and and fractional ALFF (f/ALFF) for all voxels.
-runALFF :  [0]
+runALFF :  [1]
 
 
 # Frequency cutoff (in Hz) for the high-pass filter used when calculating f/ALFF.
@@ -457,51 +452,75 @@ lowPassFreqALFF : [0.1]
 
 
 # Calculate Regional Homogeneity (ReHo) for all voxels.
-runReHo :  [0]
+runReHo :  [1]
 
 
 # Number of neighboring voxels used when calculating ReHo
 # 7 (Faces)
 # 19 (Faces + Edges)
 # 27 (Faces + Edges + Corners)
-clusterSize :  0
+clusterSize :  2
 
 
-# Calculate Degree Centrality and/or Eigenvector Centrality.
-runNetworkCentrality :  [0]
+# Calculate Degree, Eigenvector Centrality, or Functional Connectivity Density.
+runNetworkCentrality :  [1]
 
 
 # Full path to a text file containing a mask or list of ROIs.
 # Each line of this file should contain the path to an ROI or mask.
 # If a mask is specified, centrality will be calculated for all voxels within the mask.
 # If a list of ROIs is specified, each ROI will be treated as a node, and centrality will be calculated for each node.
-templateSpecificationFile :  
+templateSpecificationFile :  /home/data/Projects/Zhen/Colibazzi/Colibazzi_code/CPAC/DC_templates.txt
 
 
-# Calculating Eigenvector Centrality will take significantly longer and require significantly more computing power to calculate than Degree Centrality.
-centralityMethodOptions :  [False, False]
+# Enable/Disable degree centrality by selecting the connectivity weights
+degWeightOptions :  [True, False]
 
 
-# Specify how connections are represented during graph construction.
-# Binarized: Connection strength is either 1 or 0.
-# Weighted: Connection strength is a correlation value.
-centralityWeightOptions :  [False, False]
-
-
-# Select the type of threshold used when creating the adjacency matrix.
-correlationThresholdOption :  0
+# Select the type of threshold used when creating the degree centrality adjacency matrix.
+degCorrelationThresholdOption :  0
 
 
 # Based on the Threshold Type selected above, enter a Threshold Value.
 # P-value for Significance Threshold
 # Sparsity value for Sparsity Threshold
 # Pearson's r value for Correlation Threshold
-correlationThreshold :  0.001
+degCorrelationThreshold :  0.001
+
+
+# Enable/Disable eigenvector centrality by selecting the connectivity weights
+eigWeightOptions :  [False, False]
+
+
+# Select the type of threshold used when creating the eigenvector centrality adjacency matrix.
+eigCorrelationThresholdOption :  0
+
+
+# Based on the Threshold Type selected above, enter a Threshold Value.
+# P-value for Significance Threshold
+# Sparsity value for Sparsity Threshold
+# Pearson's r value for Correlation Threshold
+eigCorrelationThreshold :  0.001
+
+
+# Enable/Disable lFCD by selecting the connectivity weights
+lfcdWeightOptions :  [False, False]
+
+
+# Select the type of threshold used when creating the lFCD adjacency matrix.
+lfcdCorrelationThresholdOption :  0
+
+
+# Based on the Threshold Type selected above, enter a Threshold Value.
+# P-value for Significance Threshold
+# Sparsity value for Sparsity Threshold
+# Pearson's r value for Correlation Threshold
+lfcdCorrelationThreshold :  0.001
 
 
 # Maximum amount of RAM (in GB) to be used when calculating Degree Centrality.
 # Calculating Eigenvector Centrality will require additional memory based on the size of the mask or number of ROI nodes.
-memoryAllocatedForDegreeCentrality :  2.0
+memoryAllocatedForDegreeCentrality :  5.0
 
 
 # Full Width at Half Maximum of the Gaussian kernel used during spatial smoothing.
@@ -579,6 +598,10 @@ cwasRegressorStrata :  None
 runGroupAnalysis :  [0]
 
 
+# This number depends on computing resources.
+numGPAModelsAtOnce :  1
+
+
 # Select which derivatives you would like to include when running group analysis.
 # When including Dual Regression, make sure to correct your P-value for the number of maps you are comparing.
 # When including Multiple Regression SCA, you must have more degrees of freedom (subjects) than there were time series.
@@ -599,5 +622,9 @@ zThreshold :  2.3
 
 # Significance threshold (P-value) to use when doing cluster correction for multiple comparisons.
 pThreshold :  0.05
+
+
+# Run repeated measures to compare different scans (must use the group analysis subject list and phenotypic file formatted for repeated measures.
+repeatedMeasures :  False
 
 

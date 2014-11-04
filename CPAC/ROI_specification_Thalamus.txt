@@ -1,0 +1,1 @@
+/home/data/Projects/Zhen/Colibazzi/masks/SCAMaskFinal/Thalamus-maxprob-thr50-2mm.nii.gz
